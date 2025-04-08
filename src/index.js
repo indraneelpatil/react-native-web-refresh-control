@@ -16,17 +16,23 @@ export function patchFlatListProps(options = {}) {
 function setCustomFlatListWeb(options) {
   FlatList.defaultProps = {
     ...FlatList.defaultProps,
-    //eslint-disable-next-line react/display-name
-    renderScrollComponent: props => (
+    // eslint-disable-next-line react/display-name
+    renderScrollComponent: (props) => (
       <ScrollView
         {...props}
-        //eslint-disable-next-line react/prop-types
+        // eslint-disable-next-line react/prop-types
         refreshControl={
-          props.onRefresh 
+          props.onRefresh
             ? (
-            <CustomRefreshControl {...options} refreshing={props.refreshing} onRefresh={props.onRefresh} />)
-            : props.refreshControl} // fallback to existing refreshControl if any
+              <CustomRefreshControl
+                {...options}
+                refreshing={props.refreshing}
+                onRefresh={props.onRefresh}
+              />
+            )
+            : props.refreshControl // fallback to existing refreshControl if any
+        }
       />
     ),
-  }
+  };
 }
